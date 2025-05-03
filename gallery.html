@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Gallery - Wanderlust</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Internal CSS specific to gallery page -->
+    <style>
+      /* Gallery page specific styles */
+      .gallery-header {
+        background-color: #f5f5f5;
+        padding: 60px 0;
+        text-align: center;
+      }
+
+      .gallery-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 40px;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover {
+        transform: scale(1.03);
+      }
+
+      .gallery-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        vertical-align: middle;
+        transition: transform 0.5s ease;
+      }
+
+      .gallery-item:hover .gallery-image {
+        transform: scale(1.1);
+      }
+
+      .gallery-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        color: white;
+        padding: 20px;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover .gallery-caption {
+        transform: translateY(0);
+      }
+
+      .gallery-title {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+      }
+
+      .gallery-location {
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+
+      /* Category filter buttons */
+      .gallery-filters {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 30px;
+      }
+
+      .filter-btn {
+        background-color: #f5f5f5;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background-color: #ff5a5f;
+        color: white;
+      }
+
+      /* Lightbox styles */
+      .lightbox {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        flex-direction: column;
+      }
+
+      .lightbox-content {
+        max-width: 90%;
+        max-height: 80%;
+        margin-bottom: 20px;
+      }
+
+      .lightbox-image {
+        max-width: 100%;
+        max-height: 80vh;
+        border-radius: 4px;
+      }
+
+      .lightbox-caption {
+        color: white;
+        margin-top: 20px;
+        text-align: center;
+        max-width: 600px;
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+      }
+
+      .lightbox-nav {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+        box-sizing: border-box;
+        transform: translateY(-50%);
+      }
+
+      .nav-btn {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s;
+      }
+
+      .nav-btn:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+      }
+
+      /* Video gallery section */
+      .video-gallery {
+        margin-top: 60px;
+      }
+
+      .video-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .video-item {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        height: 0;
+        background-color: #000;
+      }
+
+      .video-thumbnail {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .video-play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80px;
+        height: 80px;
+        background-color: rgba(255, 90, 95, 0.8);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .video-play:before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        border-left: 25px solid white;
+        margin-left: 5px;
+      }
+
+      .video-play:hover {
+        background-color: rgba(255, 90, 95, 1);
+      }
+
+      .video-info {
+        padding: 15px;
+      }
+
+      .video-title {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+      }
+
+      .video-description {
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      /* Mobile responsiveness */
+      @media screen and (max-width: 768px) {
+        .gallery-container {
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+
+        .video-container {
+          grid-template-columns: 1fr;
+        }
+
+        .lightbox-content {
+          max-width: 95%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="logo">
+        <h1>Wanderlust</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="tips.html">Travel Tips</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="team.html">Our Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+
+    <!-- Gallery Header -->
+    <header class="gallery-header">
+      <div class="container">
+        <h1>Travel Photo Gallery</h1>
+        <p>
+          Explore stunning destinations through our curated collection of travel
+          photographs
+        </p>
+      </div>
+    </header>
+
+    <!-- Photo Gallery Section -->
+    <section class="container">
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="nature">Nature</button>
+        <button class="filter-btn" data-filter="city">Cities</button>
+        <button class="filter-btn" data-filter="culture">Culture</button>
+        <button class="filter-btn" data-filter="food">Food</button>
+        <button class="filter-btn" data-filter="adventure">Adventure</button>
+      </div>
+
+      <div class="gallery-container">
+        <!-- Nature Images -->
+        <div class="gallery-item" data-category="nature">
+          <img
+            src="spring.jpg"
+            alt="Mountain landscape in Switzerland"
+            class="gallery-image"
+          />
+          <div class="gallery-caption">
+            <h3 class="gallery-title">Alpine Majesty</h3>
+            <p class="gallery-location">Swiss Alps, Switzerland</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="nature">
+          <img
+            src="Machu.jpg"
+            alt="Tropical beach in Thailand"
+            class="gallery-image"
+          />
+          <div class="gallery-caption">
+            <h3 class="gallery-title">Paradise Shore</h3>
+            <p class="gallery-location">Phi Phi Islands, Thailand</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="nature">
+          <img
+            src="winter.jpg"
+            alt="Northern Lights in Iceland"
+            class="gallery-image"
+          />
+          <div class="gallery-caption">
+            <h3 class="gallery-title">Aurora Dreams</h3>
+            <p class="gallery-location">Reykjavik, Iceland</p>
+          </div>
+        </div>
+
+        <!-- City Images -->
+        <div class="gallery-item" data-category="city">
+          <img
+            src="tokyo.jpg"
+            alt="Tokyo skyline at night"
+            class="gallery-image"
+          />
+          <div class="gallery-caption">
+            <h3 class="gallery-title">Neon Metropolis</h3>
+            <p class="gallery-location">Tokyo, Japan</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="city">
+          <img
+            src="Venice canals.jpg"
+            alt="Venice canals"
+            class="gallery-image"
+          />
+          <div class="gallery-caption">
+            <h3 class="gallery-title">Floating City</h3>
+            <p class="gallery-location">Venice, Italy</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="city">
+          <img
+            src="New York City skyline.jpg"
+            alt="New York City skyline"
+            class="gallery-image"
+          />
+          <div class="gallery-caption">
+            <h3 class="gallery-title">Urban Jungle</h3>
+            <p class="gallery-location">New York City, USA</p>
+          </div>
+        </div>
+
+        <!-- Culture Images -->
+        <div class="gallery-item" data-category="culture">
+          <img
+            src="Tea Traditions.jpg"
+            alt="Traditional Japanese tea ceremony"
+            class="gallery-image"
+          />
+          <div class="gallery-caption">
+            <h3 class="gallery-title">Tea Traditions</h3>
+            <p class="gallery-location">Kyoto, Japan</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="culture">
+          <img src="moroco.jpg" alt="Moroccan market" class="gallery-image" />
+          <div class="gallery-caption">
+            <h3 class="gallery-title">Vibrant Souk</h3>
+            <p class="gallery-location">Marrakech, Morocco</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="culture">
+          <img
+            src="Fstival.jpg"
+            alt="Festival in India"
+            class="gallery-image"
+          />
+          <div class="gallery-caption">
+            <h3 class="gallery-title">Festival of Colors</h3>
+            <p class="gallery-location">Jaipur, India</p>
+          </div>
+        </div>
+
+        <!-- Food Images -->
+        <div class="gallery-item" data-category="food">
+          <img
+            src="Italian pasta dish.jpg"
+            alt="Italian pasta dish"
+            class="gallery-image"
+          />
+          <div class="gallery-caption">
+            <h3 class="gallery-title">Pasta Perfection</h3>
+            <p class="gallery-location">Rome, Italy</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="food">
+          <img
+            src="Street food in Thailand.jpg"
+            alt="Street food in Thailand"
+            class="gallery-image"
+          />
+          <div class="gallery-caption">
+            <h3 class="gallery-title">Street Flavors</h3>
+            <p class="gallery-location">Bangkok, Thailand</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="food">
+          <img
+            src="Fresh seafood in Greece.jpg"
+            alt="Fresh seafood in Greece"
+            class="gallery-image"
+          />
+          <div class="gallery-caption">
+            <h3 class="gallery-title">Mediterranean Catch</h3>
+            <p class="gallery-location">Santorini, Greece</p>
+          </div>
+        </div>
+
+        <!-- Adventure Images -->
+        <div class="gallery-item" data-category="adventure">
+          <img
+            src="Hiking in Patagonia.jpg"
+            alt="Hiking in Patagonia"
+            class="gallery-image"
+          />
+          <div class="gallery-caption">
+            <h3 class="gallery-title">Wild Frontiers</h3>
+            <p class="gallery-location">Patagonia, Argentina</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="adventure">
+          <img
+            src="Scuba diving in Great Barrier Reef.jpg"
+            alt="Scuba diving in Great Barrier Reef"
+            class="gallery-image"
+          />
+          <div class="gallery-caption">
+            <h3 class="gallery-title">Underwater Wonders</h3>
+            <p class="gallery-location">Great Barrier Reef, Australia</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-category="adventure">
+          <img
+            src="Hot air ballooning in Cappadocia.jpg"
+            alt="Hot air ballooning in Cappadocia"
+            class="gallery-image"
+          />
+          <div class="gallery-caption">
+            <h3 class="gallery-title">Floating Dreams</h3>
+            <p class="gallery-location">Cappadocia, Turkey</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Gallery Section -->
+    <section
+      class="video-gallery"
+      style="background-color: #f5f5f5; padding: 60px 0"
+    >
+      <div class="container">
+        <h2 class="section-title">Travel Videos</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 30px">
+          Immerse yourself in stunning travel videos from around the world
+        </p>
+
+        <div class="video-container">
+          <div class="video-item">
+            <div class="video-wrapper">
+              <img
+                src="/api/placeholder/600/340"
+                alt="Exploring Japan"
+                class="video-thumbnail"
+              />
+              <div class="video-play"></div>
+            </div>
+            <div class="video-info">
+              <h3 class="video-title">A Week in Japan</h3>
+              <p class="video-description">
+                Journey through Tokyo, Kyoto, and the Japanese countryside in
+                this immersive travel experience.
+              </p>
+            </div>
+          </div>
+
+          <div class="video-item">
+            <div class="video-wrapper">
+              <img
+                src="/api/placeholder/600/340"
+                alt="Italian Food Tour"
+                class="video-thumbnail"
+              />
+              <div class="video-play"></div>
+            </div>
+            <div class="video-info">
+              <h3 class="video-title">Culinary Italy</h3>
+              <p class="video-description">
+                From pasta in Rome to pizza in Naples, explore Italy's diverse
+                culinary landscape.
+              </p>
+            </div>
+          </div>
+
+          <div class="video-item">
+            <div class="video-wrapper">
+              <img
+                src="/api/placeholder/600/340"
+                alt="New Zealand Adventure"
+                class="video-thumbnail"
+              />
+              <div class="video-play"></div>
+            </div>
+            <div class="video-info">
+              <h3 class="video-title">New Zealand: Land of Adventure</h3>
+              <p class="video-description">
+                Bungee jumping, hiking, and exploring the breathtaking
+                landscapes of New Zealand's South Island.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- User Submissions Section -->
+    <section class="container" style="margin-top: 60px">
+      <h2 class="section-title">Share Your Adventures</h2>
+      <p style="text-align: center; max-width: 800px; margin: 0 auto 30px">
+        Have amazing travel photos or videos? Share them with our community!
+      </p>
+
+      <div
+        style="
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 30px;
+          background-color: #f9f9f9;
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <form id="submission-form">
+          <div style="margin-bottom: 20px">
+            <label
+              for="name"
+              style="display: block; margin-bottom: 8px; font-weight: 500"
+              >Your Name</label
+            >
+            <input
+              type="text"
+              id="name"
+              style="
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+              "
+              required
+            />
+          </div>
+
+          <div style="margin-bottom: 20px">
+            <label
+              for="email"
+              style="display: block; margin-bottom: 8px; font-weight: 500"
+              >Email Address</label
+            >
+            <input
+              type="email"
+              id="email"
+              style="
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+              "
+              required
+            />
+          </div>
+
+          <div style="margin-bottom: 20px">
+            <label
+              for="location"
+              style="display: block; margin-bottom: 8px; font-weight: 500"
+              >Photo Location</label
+            >
+            <input
+              type="text"
+              id="location"
+              style="
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+              "
+              required
+            />
+          </div>
+
+          <div style="margin-bottom: 20px">
+            <label
+              for="category"
+              style="display: block; margin-bottom: 8px; font-weight: 500"
+              >Category</label
+            >
+            <select
+              id="category"
+              style="
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+              "
+              required
+            >
+              <option value="">Select Category</option>
+              <option value="nature">Nature</option>
+              <option value="city">City</option>
+              <option value="culture">Culture</option>
+              <option value="food">Food</option>
+              <option value="adventure">Adventure</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom: 20px">
+            <label
+              for="file"
+              style="display: block; margin-bottom: 8px; font-weight: 500"
+              >Upload Photo/Video</label
+            >
+            <input
+              type="file"
+              id="file"
+              style="
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                background-color: white;
+              "
+              required
+            />
+          </div>
+
+          <div style="margin-bottom: 20px">
+            <label
+              for="description"
+              style="display: block; margin-bottom: 8px; font-weight: 500"
+              >Description</label
+            >
+            <textarea
+              id="description"
+              style="
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                height: 120px;
+                resize: vertical;
+              "
+              required
+            ></textarea>
+          </div>
+
+          <div style="margin-bottom: 20px">
+            <label style="display: flex; align-items: center">
+              <input type="checkbox" required style="margin-right: 10px" />
+              <span
+                >I agree to the terms and conditions for image submission</span
+              >
+            </label>
+          </div>
+
+          <button
+            type="submit"
+            style="
+              background-color: #ff5a5f;
+              color: white;
+              border: none;
+              padding: 12px 25px;
+              border-radius: 30px;
+              cursor: pointer;
+              font-size: 1rem;
+              font-weight: 500;
+              width: 100%;
+            "
+          >
+            Submit Photo
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Lightbox for image viewing -->
+    <div class="lightbox">
+      <span class="lightbox-close">&times;</span>
+      <div class="lightbox-content">
+        <img src="" alt="" class="lightbox-image" />
+      </div>
+      <div class="lightbox-caption">
+        <h3 class="lightbox-title"></h3>
+        <p class="lightbox-location"></p>
+      </div>
+      <div class="lightbox-nav">
+        <button class="nav-btn prev-btn">&lt;</button>
+        <button class="nav-btn next-btn">&gt;</button>
+      </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+      <div class="container">
+        <h2 class="section-title">Stay Updated</h2>
+        <p style="text-align: center; max-width: 600px; margin: 0 auto 30px">
+          Subscribe to our newsletter for the latest travel inspiration,
+          photography tips, and exclusive content.
+        </p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit" class="cta-button">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Wanderlust</h3>
+            <p>
+              Your ultimate guide to exploring the world's most amazing
+              destinations.
+            </p>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="destinations.html">Destinations</a></li>
+              <li><a href="tips.html">Travel Tips</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="team.html">Our Team</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <div class="social-icons">
+              <a href="#" class="social-icon">Facebook</a>
+              <a href="#" class="social-icon">Instagram</a>
+              <a href="#" class="social-icon">Twitter</a>
+              <a href="#" class="social-icon">Pinterest</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Wanderlust. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript for gallery filtering and lightbox -->
+    <script>
+      // DOM Elements
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const galleryItems = document.querySelectorAll(".gallery-item");
+      const lightbox = document.querySelector(".lightbox");
+      const lightboxImage = document.querySelector(".lightbox-image");
+      const lightboxTitle = document.querySelector(".lightbox-title");
+      const lightboxLocation = document.querySelector(".lightbox-location");
+      const lightboxClose = document.querySelector(".lightbox-close");
+      const prevBtn = document.querySelector(".prev-btn");
+      const nextBtn = document.querySelector(".next-btn");
+
+      let currentIndex = 0;
+      let filteredItems = [...galleryItems];
+
+      // Filter gallery items
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          // Remove active class from all buttons
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+
+          // Add active class to clicked button
+          button.classList.add("active");
+
+          const filter = button.getAttribute("data-filter");
+
+          // Filter gallery items
+          galleryItems.forEach((item) => {
+            if (
+              filter === "all" ||
+              item.getAttribute("data-category") === filter
+            ) {
+              item.style.display = "block";
+            } else {
+              item.style.display = "none";
+            }
+          });
+
+          // Update filtered items array
+          filteredItems = [...galleryItems].filter(
+            (item) =>
+              filter === "all" || item.getAttribute("data-category") === filter
+          );
+        });
+      });
+
+      // Open lightbox on gallery item click
+      galleryItems.forEach((item, index) => {
+        item.addEventListener("click", () => {
+          const img = item.querySelector(".gallery-image");
+          const title = item.querySelector(".gallery-title").textContent;
+          const location = item.querySelector(".gallery-location").textContent;
+
+          lightboxImage.src = img.src;
+          lightboxImage.alt = img.alt;
+          lightboxTitle.textContent = title;
+          lightboxLocation.textContent = location;
+
+          lightbox.style.display = "flex";
+
+          // Set current index
+          currentIndex = filteredItems.indexOf(item);
+        });
+      });
+
+      // Close lightbox
+      lightboxClose.addEventListener("click", () => {
+        lightbox.style.display = "none";
+      });
+
+      // Close lightbox on outside click
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          lightbox.style.display = "none";
+        }
+      });
+
+      // Navigate to previous image
+      prevBtn.addEventListener("click", () => {
+        currentIndex =
+          (currentIndex - 1 + filteredItems.length) % filteredItems.length;
+        updateLightboxContent();
+      });
+
+      // Navigate to next image
+      nextBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % filteredItems.length;
+        updateLightboxContent();
+      });
+
+      // Update lightbox content
+      function updateLightboxContent() {
+        const item = filteredItems[currentIndex];
+        const img = item.querySelector(".gallery-image");
+        const title = item.querySelector(".gallery-title").textContent;
+        const location = item.querySelector(".gallery-location").textContent;
+
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+        lightboxTitle.textContent = title;
+        lightboxLocation.textContent = location;
+      }
+
+      // Toggle mobile menu
+      const burger = document.querySelector(".burger");
+      const navLinks = document.querySelector(".nav-links");
+
+      burger.addEventListener("click", () => {
+        navLinks.classList.toggle("nav-active");
+        burger.classList.toggle("toggle");
+      });
+
+      // Form submission event (demo)
+      document
+        .getElementById("submission-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          alert(
+            "Thank you for your submission! In a real implementation, this would upload your photo to our gallery."
+          );
+          this.reset();
+        });
+
+      // Video play buttons (demo)
+      document.querySelectorAll(".video-play").forEach((playButton) => {
+        playButton.addEventListener("click", function () {
+          alert(
+            "In a real implementation, this would play the video. Due to the limitations of this demo, we are showing this message instead."
+          );
+        });
+      });
+    </script>
+  </body>
+</html>

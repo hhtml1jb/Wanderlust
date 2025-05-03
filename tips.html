@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Tips - Wanderlust</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Internal CSS specific to tips page -->
+    <style>
+      /* Tips page specific styles */
+      .tips-header {
+        background-color: #f5f5f5;
+        padding: 60px 0;
+        text-align: center;
+      }
+
+      .tips-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .tips-sidebar {
+        flex: 1;
+        min-width: 250px;
+        max-width: 300px;
+      }
+
+      .tips-content {
+        flex: 3;
+        min-width: 300px;
+      }
+
+      .sidebar-nav {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        position: sticky;
+        top: 100px;
+      }
+
+      .sidebar-nav h3 {
+        background-color: #ff5a5f;
+        color: white;
+        padding: 15px 20px;
+        margin: 0;
+      }
+
+      .sidebar-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .sidebar-nav li {
+        border-bottom: 1px solid #eee;
+      }
+
+      .sidebar-nav li:last-child {
+        border-bottom: none;
+      }
+
+      .sidebar-nav a {
+        display: block;
+        padding: 12px 20px;
+        color: #333;
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+
+      .sidebar-nav a:hover,
+      .sidebar-nav a.active {
+        background-color: #f9f9f9;
+        color: #ff5a5f;
+        padding-left: 25px;
+      }
+
+      .tip-section {
+        margin-bottom: 50px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+
+      .tip-section h2 {
+        color: #333;
+        margin-top: 0;
+        border-bottom: 2px solid #ff5a5f;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+
+      .tip-card {
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .tip-card:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .tip-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .tip-icon {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(255, 90, 95, 0.1);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 15px;
+        font-size: 20px;
+        color: #ff5a5f;
+      }
+
+      .tip-title {
+        font-size: 1.3rem;
+        margin: 0;
+      }
+
+      .featured-tip {
+        background-color: #f9f9f9;
+        border-left: 4px solid #ff5a5f;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 0 8px 8px 0;
+      }
+
+      .tip-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+      }
+
+      .tip-tag {
+        background-color: #f0f0f0;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        color: #666;
+      }
+
+      .checklist {
+        list-style: none;
+        padding-left: 5px;
+      }
+
+      .checklist li {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 10px;
+      }
+
+      .checklist li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #ff5a5f;
+        font-weight: bold;
+      }
+
+      .download-btn {
+        display: inline-block;
+        background-color: #ff5a5f;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 500;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+      }
+
+      .download-btn:hover {
+        background-color: #ff3d42;
+      }
+
+      .tip-resources {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+
+      .resource-list {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .resource-list li {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+      }
+
+      .resource-list li:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
+      .resource-link {
+        display: flex;
+        align-items: center;
+        color: #333;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .resource-link:hover {
+        color: #ff5a5f;
+      }
+
+      .resource-icon {
+        margin-right: 10px;
+      }
+
+      /* Responsive design */
+      @media screen and (max-width: 768px) {
+        .tips-container {
+          flex-direction: column;
+        }
+
+        .tips-sidebar {
+          max-width: 100%;
+        }
+
+        .sidebar-nav {
+          position: relative;
+          top: 0;
+          margin-bottom: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="logo">
+        <h1>Wanderlust</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="tips.html" class="active">Travel Tips</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="team.html">Our Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+
+    <!-- Tips Header -->
+    <header class="tips-header">
+      <div class="container">
+        <h1>Expert Travel Tips & Advice</h1>
+        <p>
+          Everything you need to know to plan the perfect trip and travel like a
+          pro
+        </p>
+      </div>
+    </header>
+
+    <!-- Tips Section -->
+    <section class="container">
+      <div class="tips-container">
+        <!-- Sidebar Navigation -->
+        <div class="tips-sidebar">
+          <div class="sidebar-nav">
+            <h3>Topics</h3>
+            <ul>
+              <li><a href="#planning" class="active">Trip Planning</a></li>
+              <li><a href="#packing">Packing Tips</a></li>
+              <li><a href="#budget">Budget Travel</a></li>
+              <li><a href="#safety">Safety & Health</a></li>
+              <li><a href="#photography">Travel Photography</a></li>
+              <li><a href="#sustainable">Sustainable Travel</a></li>
+              <li><a href="#solo">Solo Travel</a></li>
+              <li><a href="#resources">Resources</a></li>
+            </ul>
+          </div>
+
+          <div
+            style="
+              margin-top: 30px;
+              background-color: white;
+              border-radius: 8px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              padding: 20px;
+            "
+          >
+            <h3>Need Personalized Advice?</h3>
+            <p>
+              Our travel experts are here to help you plan your perfect trip.
+            </p>
+            <a
+              href="contact.html"
+              class="cta-button"
+              style="width: 100%; text-align: center; margin-top: 15px"
+              >Contact Us</a
+            >
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="tips-content">
+          <!-- Trip Planning Section -->
+          <div id="planning" class="tip-section">
+            <h2>Trip Planning</h2>
+
+            <div class="tip-card">
+              <div class="tip-header">
+                <div class="tip-icon">📅</div>
+                <h3 class="tip-title">Best Time to Research & Book</h3>
+              </div>
+              <p>
+                Timing is crucial when planning a trip. For international
+                flights, booking 3-6 months in advance often yields the best
+                prices. For domestic flights, the sweet spot is usually 1-3
+                months before departure.
+              </p>
+
+              <div class="featured-tip">
+                <strong>Pro Tip:</strong> Use incognito mode when searching for
+                flights to avoid price increases based on your browsing history.
+                Many booking sites use cookies to track your searches and may
+                increase prices if you repeatedly check the same routes.
+              </div>
+
+              <p>
+                Set up price alerts with services like Google Flights or
+                Skyscanner to monitor fare changes. Tuesdays and Wednesdays are
+                often the cheapest days to book, while flying mid-week (Tuesday
+                through Thursday) typically costs less than weekend travel.
+              </p>
+
+              <div class="tip-tags">
+                <span class="tip-tag">Flights</span>
+                <span class="tip-tag">Booking</span>
+                <span class="tip-tag">Savings</span>
+              </div>
+            </div>
+
+            <div class="tip-card">
+              <div class="tip-header">
+                <div class="tip-icon">🗺️</div>
+                <h3 class="tip-title">Creating the Perfect Itinerary</h3>
+              </div>
+              <p>
+                A well-planned itinerary balances must-see attractions with
+                flexibility for unexpected discoveries. Start by listing your
+                top priorities, then organize them geographically to minimize
+                travel time between locations.
+              </p>
+
+              <p>
+                Allow buffer days in your schedule for rest or unexpected
+                opportunities. For city destinations, group activities by
+                neighborhood to maximize efficiency. For longer trips, don't try
+                to see everything—choose quality experiences over quantity.
+              </p>
+
+              <div class="featured-tip">
+                <strong>Pro Tip:</strong> Follow the 3-3-3 rule for balanced
+                travel: Visit 3 destinations maximum for a two-week trip, spend
+                at least 3 nights in each place, and take at least 3 hours each
+                day with no scheduled activities.
+              </div>
+
+              <p>
+                Research local holidays, museum closing days, and free entrance
+                days when planning your schedule. Many museums offer discounted
+                or free entry on specific days of the week or month.
+              </p>
+
+              <div class="tip-tags">
+                <span class="tip-tag">Itinerary</span>
+                <span class="tip-tag">Planning</span>
+                <span class="tip-tag">Efficiency</span>
+              </div>
+            </div>
+
+            <div class="tip-card">
+              <div class="tip-header">
+                <div class="tip-icon">📱</div>
+                <h3 class="tip-title">Essential Travel Apps</h3>
+              </div>
+              <p>
+                The right travel apps can significantly enhance your journey.
+                Here are some must-haves for every traveler:
+              </p>
+
+              <ul style="padding-left: 20px">
+                <li>
+                  <strong>Maps.me or Google Maps (offline):</strong> Download
+                  offline maps before your trip for navigation without data.
+                </li>
+                <li>
+                  <strong>Google Translate:</strong> Download language packs for
+                  offline translation and use the camera feature to translate
+                  signs and menus.
+                </li>
+                <li>
+                  <strong>XE Currency:</strong> For real-time currency
+                  conversion and offline rate storage.
+                </li>
+                <li>
+                  <strong>TripIt:</strong> Organizes all your travel
+                  confirmations in one place and creates a master itinerary.
+                </li>
+                <li>
+                  <strong>Splitwise:</strong> Essential for group travel to
+                  track shared expenses.
+                </li>
+                <li>
+                  <strong>Citymapper:</strong> Better than Google Maps for
+                  public transportation in major cities.
+                </li>
+              </ul>
+
+              <div class="featured-tip">
+                <strong>Pro Tip:</strong> Create a dedicated "Travel" folder on
+                your phone's home screen to keep all travel-related apps easily
+                accessible during your trip.
+              </div>
+
+              <div class="tip-tags">
+                <span class="tip-tag">Technology</span>
+                <span class="tip-tag">Apps</span>
+                <span class="tip-tag">Organization</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Packing Tips Section -->
+          <div id="packing" class="tip-section">
+            <h2>Packing Tips</h2>
+
+            <div class="tip-card">
+              <div class="tip-header">
+                <div class="tip-icon">👕</div>
+                <h3 class="tip-title">The Art of Packing Light</h3>
+              </div>
+              <p>
+                Packing light is a skill that makes travel significantly more
+                enjoyable. Focus on versatile clothing items that can be mixed
+                and matched, and stick to a consistent color palette to maximize
+                outfit combinations.
+              </p>
+
+              <p>
+                The "5-4-3-2-1" rule is helpful for a week-long trip: 5 pairs of
+                socks and underwear, 4 tops, 3 bottoms, 2 pairs of shoes, and 1
+                jacket. Adjust as needed for your specific destination and
+                activities.
+              </p>
+
+              <div class="featured-tip">
+                <strong>Pro Tip:</strong> Roll clothes instead of folding them
+                to save space and reduce wrinkles. Use packing cubes to organize
+                different categories of clothing and compress soft items.
+              </div>
+
+              <p>
+                Wear your bulkiest items (like boots or a heavy jacket) during
+                travel to save suitcase space. Remember that you can usually do
+                laundry during longer trips, so you don't need to pack for every
+                single day.
+              </p>
+
+              <div class="tip-tags">
+                <span class="tip-tag">Packing</span>
+                <span class="tip-tag">Minimalism</span>
+                <span class="tip-tag">Efficiency</span>
+              </div>
+            </div>
+
+            <div class="tip-card">
+              <div class="tip-header">
+                <div class="tip-icon">📋</div>
+                <h3 class="tip-title">Essential Packing Checklist</h3>
+              </div>
+              <p>
+                Never forget important items with this comprehensive packing
+                checklist:
+              </p>
+
+              <h4>Documents</h4>
+              <ul class="checklist">
+                <li>
+                  Passport/ID (valid for at least 6 months beyond your trip)
+                </li>
+                <li>Visa documentation (if required)</li>
+                <li>Travel insurance information</li>
+                <li>Flight/train/bus tickets</li>
+                <li>Hotel/accommodation confirmations</li>
+                <li>Driver's license (if planning to drive)</li>
+                <li>Emergency contact information</li>
+              </ul>
+
+              <h4>Technology</h4>
+              <ul class="checklist">
+                <li>Smartphone and charger</li>
+                <li>Power bank</li>
+                <li>Universal adapter</li>
+                <li>Camera and charger</li>
+                <li>Headphones</li>
+                <li>E-reader or tablet (optional)</li>
+              </ul>
+
+              <h4>Toiletries</h4>
+              <ul class="checklist">
+                <li>Travel-sized shampoo and conditioner</li>
+                <li>Toothbrush and toothpaste</li>
+                <li>Deodorant</li>
+                <li>Sunscreen</li>
+                <li>Basic first-aid kit</li>
+                <li>Prescription medications</li>
+              </ul>
+
+              <div class="featured-tip">
+                <strong>Pro Tip:</strong> Keep a digital copy of all important
+                documents in your email or cloud storage. Also share your
+                itinerary and copy of your passport with a trusted friend or
+                family member back home.
+              </div>
+
+              <a href="#" class="download-btn">Download Printable Checklist</a>
+
+              <div class="tip-tags">
+                <span class="tip-tag">Checklist</span>
+                <span class="tip-tag">Organization</span>
+                <span class="tip-tag">Preparation</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Budget Travel Section -->
+          <div id="budget" class="tip-section">
+            <h2>Budget Travel</h2>
+
+            <div class="tip-card">
+              <div class="tip-header">
+                <div class="tip-icon">💰</div>
+                <h3 class="tip-title">Smart Budgeting Strategies</h3>
+              </div>
+              <p>
+                Traveling on a budget doesn't mean sacrificing quality
+                experiences. The key is prioritizing where to spend and where to
+                save. Allocate more budget to the aspects of travel that matter
+                most to you (food, activities, accommodation) and economize on
+                the rest.
+              </p>
+
+              <p>
+                Research the average costs for your destination and create a
+                daily budget. Track your expenses during the trip with an app
+                like Trail Wallet or Tripcoin to stay on target.
+              </p>
+
+              <div class="featured-tip">
+                <strong>Pro Tip:</strong> Create a dedicated "travel fund" by
+                setting up automatic transfers to a separate savings account.
+                Even small weekly contributions add up significantly over time.
+              </div>
+
+              <p>
+                Consider traveling during shoulder season (just before or after
+                peak season) for significant savings on accommodation and
+                flights while still enjoying good weather and fewer crowds.
+              </p>
+
+              <div class="tip-tags">
+                <span class="tip-tag">Budget</span>
+                <span class="tip-tag">Planning</span>
+                <span class="tip-tag">Savings</span>
+              </div>
+            </div>
+
+            <div class="tip-card">
+              <div class="tip-header">
+                <div class="tip-icon">🏠</div>
+                <h3 class="tip-title">Affordable Accommodation Options</h3>
+              </div>
+              <p>
+                Accommodation is often the largest expense in a travel budget.
+                Consider these alternatives to traditional hotels:
+              </p>
+
+              <ul style="padding-left: 20px">
+                <li>
+                  <strong>Hostels:</strong> Not just for backpackers anymore.
+                  Many offer private rooms with en-suite bathrooms at a fraction
+                  of hotel prices.
+                </li>
+                <li>
+                  <strong>Vacation Rentals:</strong> Platforms like Airbnb or
+                  VRBO can be more economical than hotels, especially for longer
+                  stays or group travel.
+                </li>
+                <li>
+                  <strong>House Sitting:</strong> Websites like
+                  TrustedHousesitters connect travelers with homeowners looking
+                  for someone to care for their home and pets.
+                </li>
+                <li>
+                  <strong>Home Exchange:</strong> Swap homes with another
+                  traveler to eliminate accommodation costs entirely.
+                </li>
+                <li>
+                  <strong>Monasteries & Convents:</strong> In countries like
+                  Italy, these offer simple but affordable accommodation in
+                  remarkable historical buildings.
+                </li>
+              </ul>
+
+              <div class="featured-tip">
+                <strong>Pro Tip:</strong> Book accommodation with kitchen
+                facilities to save money by preparing some of your own meals.
+                Even making just breakfast and one other meal daily can cut your
+                food budget in half.
+              </div>
+
+              <div class="tip-tags">
+                <span class="tip-tag">Accommodation</span>
+                <span class="tip-tag">Budget</span>
+                <span class="tip-tag">Alternatives</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Safety & Health Section -->
+          <div id="safety" class="tip-section">
+            <h2>Safety & Health</h2>
+
+            <div class="tip-card">
+              <div class="tip-header">
+                <div class="tip-icon">🚑</div>
+                <h3 class="tip-title">Travel Health Essentials</h3>
+              </div>
+              <p>
+                Staying healthy while traveling requires preparation. Schedule a
+                pre-travel consultation with a travel medicine specialist 4-6
+                weeks before departure to discuss necessary vaccinations or
+                preventive medications for your destination.
+              </p>
+
+              <p>Pack a comprehensive travel medical kit including:</p>
+              <ul style="padding-left: 20px">
+                <li>
+                  Prescription medications in original containers with extra
+                  supply
+                </li>
+                <li>Over-the-counter pain relievers</li>
+                <li>Anti-diarrheal medication</li>
+                <li>Motion sickness remedies</li>
+                <li>Bandages and antiseptic wipes</li>
+                <li>Insect repellent (with DEET for tropical destinations)</li>
+                <li>Rehydration salts</li>
+              </ul>
+
+              <div class="featured-tip">
+                <strong>Pro Tip:</strong> Always purchase travel insurance that
+                includes adequate medical coverage and emergency evacuation. The
+                cost of medical emergencies abroad can be catastrophic without
+                proper insurance.
+              </div>
+
+              <div class="tip-tags">
+                <span class="tip-tag">Health</span>
+                <span class="tip-tag">Insurance</span>
+                <span class="tip-tag">Preparation</span>
+              </div>
+            </div>
+
+            <div class="tip-card">
+              <div class="tip-header">
+                <div class="tip-icon">🔒</div>
+                <h3 class="tip-title">Personal Safety Abroad</h3>
+              </div>
+              <p>
+                Most destinations are safe for travelers who exercise common
+                sense. Research the specific safety concerns of your destination
+                before departure and register with your country's embassy or
+                consulate through programs like the Smart Traveler Enrollment
+                Program (STEP) for U.S. citizens.
+              </p>
+
+              <p>Basic safety precautions include:</p>
+              <ul style="padding-left: 20px">
+                <li>Keep a low profile and avoid displaying expensive items</li>
+                <li>Be aware of common scams in your destination</li>
+                <li>Use hotel safes for valuables and important documents</li>
+                <li>Share your itinerary with someone at home</li>
+                <li>
+                  Have a backup credit/debit card stored separately from your
+                  primary cards
+                </li>
+                <li>Use anti-theft bags or money belts in high-risk areas</li>
+                <li>
+                  Be extra vigilant in crowded tourist areas and on public
+                  transportation
+                </li>
+              </ul>
+
+              <div class="featured-tip">
+                <strong>Pro Tip:</strong> Save offline maps of your destination
+                and pin important locations like your accommodation, nearby
+                hospitals, and police stations. Also save emergency contact
+                numbers for local authorities and your country's embassy.
+              </div>
+
+              <div class="tip-tags">
+                <span class="tip-tag">Safety</span>
+                <span class="tip-tag">Security</span>
+                <span class="tip-tag">Precautions</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- More sections can be added following the same structure -->
+
+          <!-- Resources Section -->
+          <div id="resources" class="tip-section">
+            <h2>Recommended Resources</h2>
+
+            <div class="tip-resources">
+              <h3>Useful Websites & Apps</h3>
+              <ul class="resource-list">
+                <li>
+                  <a href="#" class="resource-link">
+                    <span class="resource-icon">🔍</span>
+                    <span
+                      >Rome2Rio - Find how to get anywhere by plane, train, bus,
+                      ferry & automobile</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="resource-link">
+                    <span class="resource-icon">✈️</span>
+                    <span
+                      >Skyscanner - Compare flight prices across airlines</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="resource-link">
+                    <span class="resource-icon">🏨</span>
+                    <span
+                      >Booking.com - Hotel reservations with free cancellation
+                      options</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="resource-link">
+                    <span class="resource-icon">📝</span>
+                    <span
+                      >TripAdvisor - Reviews and recommendations from other
+                      travelers</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="resource-link">
+                    <span class="resource-icon">💉</span>
+                    <span
+                      >CDC Travel Health - Health information for international
+                      travelers</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="resource-link">
+                    <span class="resource-icon">🔐</span>
+                    <span
+                      >Travel.State.Gov - Official U.S. government travel
+                      advisories</span
+                    >
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="tip-resources">
+              <h3>Recommended Travel Guides</h3>
+              <ul class="resource-list">
+                <li>
+                  <a href="#" class="resource-link">
+                    <span class="resource-icon">📚</span>
+                    <span
+                      >Lonely Planet - Comprehensive destination guides</span
+                    >
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="resource-link">
+                    <span class="resource-icon">📚</span>
+                    <span>Rick Steves - Detailed European travel guides</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="resource-link">
+                    <span class="resource-icon">📚</span>
+                    <span
+                      >Nomadic Matt - Budget travel advice and destination
+                      guides</span
+                    >
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div style="margin-top: 30px; text-align: center">
+              <p>Have a travel tip to share? We'd love to hear from you!</p>
+              <a href="contact.html" class="cta-button">Submit Your Tip</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+      <div class="container">
+        <h2 class="section-title">Get Travel Tips in Your Inbox</h2>
+        <p style="text-align: center; max-width: 600px; margin: 0 auto 30px">
+          Subscribe to our newsletter for weekly travel tips, destination
+          guides, and exclusive content.
+        </p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit" class="cta-button">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Wanderlust</h3>
+            <p>
+              Your ultimate guide to exploring the world's most amazing
+              destinations.
+            </p>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="destinations.html">Destinations</a></li>
+              <li><a href="tips.html">Travel Tips</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="team.html">Our Team</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <div class="social-icons">
+              <a href="#" class="social-icon">Facebook</a>
+              <a href="#" class="social-icon">Instagram</a>
+              <a href="#" class="social-icon">Twitter</a>
+              <a href="#" class="social-icon">Pinterest</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Wanderlust. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+      // Smooth scrolling for sidebar navigation
+      document.querySelectorAll(".sidebar-nav a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          // Get the target section
+          const targetId = this.getAttribute("href");
+          const targetSection = document.querySelector(targetId);
+
+          // Scroll to the section
+          window.scrollTo({
+            top: targetSection.offsetTop - 100,
+            behavior: "smooth",
+          });
+
+          // Update active class
+          document.querySelectorAll(".sidebar-nav a").forEach((link) => {
+            link.classList.remove("active");
+          });
+          this.classList.add("active");
+        });
+      });
+
+      // Highlight active section on scroll
+      window.addEventListener("scroll", function () {
+        const sections = document.querySelectorAll(".tip-section");
+        const navLinks = document.querySelectorAll(".sidebar-nav a");
+
+        let currentSection = "";
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 150;
+          const sectionHeight = section.clientHeight;
+
+          if (
+            pageYOffset >= sectionTop &&
+            pageYOffset < sectionTop + sectionHeight
+          ) {
+            currentSection = "#" + section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === currentSection) {
+            link.classList.add("active");
+          }
+        });
+      });
+
+      // Toggle mobile menu
+      const burger = document.querySelector(".burger");
+      const navLinks = document.querySelector(".nav-links");
+
+      burger.addEventListener("click", () => {
+        navLinks.classList.toggle("nav-active");
+        burger.classList.toggle("toggle");
+      });
+
+      // Downloadable checklist (demo)
+      document
+        .querySelector(".download-btn")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          alert(
+            "In a real implementation, this would download a printable PDF checklist."
+          );
+        });
+    </script>
+  </body>
+</html>

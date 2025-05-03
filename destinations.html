@@ -1,0 +1,608 @@
+</style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>Wanderlust</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="destinations.html" class="active">Destinations</a></li>
+            <li><a href="tips.html">Travel Tips</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Our Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="destinations-hero">
+        <h1>Explore Amazing Destinations</h1>
+        <p>Discover breathtaking locations and plan your next adventure</p>
+    </header>
+
+    <!-- Filter Section -->
+    <section class="container">
+        <div class="filter-container">
+            <h2>Find Your Perfect Destination</h2>
+            <div class="filter-options">
+                <select id="region-filter">
+                    <option value="">All Regions</option>
+                    <option value="europe">Europe</option>
+                    <option value="asia">Asia</option>
+                    <option value="north-america">North America</option>
+                    <option value="south-america">South America</option>
+                    <option value="africa">Africa</option>
+                    <option value="oceania">Oceania</option>
+                </select>
+                
+                <select id="interest-filter">
+                    <option value="">All Interests</option>
+                    <option value="beach">Beaches</option>
+                    <option value="mountain">Mountains</option>
+                    <option value="city">Cities</option>
+                    <option value="culture">Culture</option>
+                    <option value="food">Food & Cuisine</option>
+                    <option value="adventure">Adventure</option>
+                </select>
+                
+                <select id="budget-filter">
+                    <option value="">All Budgets</option>
+                    <option value="budget">Budget Friendly</option>
+                    <option value="mid-range">Mid-Range</option>
+                    <option value="luxury">Luxury</option>
+                </select>
+                
+                <input type="text" id="search-filter" placeholder="Search destinations...">
+                
+                <button class="filter-button">Filter Results</button>
+            </div>
+        </div>
+
+        <!-- Featured Destination -->
+		<div class="featured-destination">
+			<img src="Kyoto.jpg" alt="Kyoto, Japan" class="featured-image">
+			<div class="featured-info">
+				<span class="featured-label">Featured Destination</span>
+				<h2 class="featured-name">Kyoto, Japan</h2>
+				<p class="featured-description">
+					Kyoto, once the capital of Japan, is a city on the island of Honshu. It's famous for its numerous classical Buddhist temples, gardens, imperial palaces, Shinto shrines and traditional wooden houses. It's also known for formal traditions such as kaiseki dining, consisting of multiple courses of precise dishes, and geisha, female entertainers often found in the Gion district.
+				</p>
+				<p class="featured-description">
+					The best time to visit is spring (March to May) for the cherry blossoms or fall (October to November) for the stunning autumn colors. Kyoto offers an unparalleled glimpse into Japan's rich cultural heritage while providing modern comforts.
+				</p>
+				<a href="kyoto.html" class="cta-button">Explore Kyoto</a>
+			</div>
+		</div>
+
+        <!-- Europe Section -->
+        <div class="featured-destination">
+			<img src="Santorini.jpg" alt="Santorini, Greece" class="featured-image">
+			<div class="featured-info">
+				<span class="featured-label">Featured Destination</span>
+				<h2 class="featured-name">Santorini, Greece</h2>
+				<p class="featured-description">
+					Santorini is a stunning island in the Aegean Sea, renowned for its dramatic views, white-washed buildings with blue domes, and breathtaking sunsets. The island's unique landscape was formed by a volcanic caldera, creating steep cliffs that plunge into the sea.
+				</p>
+				<a href="santorini.html" class="cta-button">Explore Santorini</a>
+			</div>
+		</div>
+
+        <!-- Asia Section -->
+		<div class="featured-destination">
+			<img src="Machu.jpg" alt="Machu Picchu, Peru" class="featured-image">
+			<div class="featured-info">
+				<span class="featured-label">Featured Destination</span>
+				<h2 class="featured-name">Machu Picchu, Peru</h2>
+				<p class="featured-description">
+					Machu Picchu is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a mountain ridge 2,430 meters above sea level. Often referred to as the "Lost City of the Incas," it is the most familiar icon of Inca civilization and an architectural marvel.
+				</p>
+				<a href="machu-picchu.html" class="cta-button">Explore Machu Picchu</a>
+			</div>
+		</div>
+
+        <!-- Destination Comparison Table -->
+        <div class="comparison-table">
+            <h2 class="section-title">Top Destinations Comparison</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Destination</th>
+                        <th>Best For</th>
+                        <th>Budget Level</th>
+                        <th>Best Season</th>
+                        <th>Top Attraction</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Barcelona, Spain</td>
+                        <td>Architecture, Beaches, Nightlife</td>
+                        <td>$$</td>
+                        <td>Spring, Fall</td>
+                        <td>Sagrada Familia</td>
+                    </tr>
+                    <tr>
+                        <td>Kyoto, Japan</td>
+                        <td>Culture, History, Food</td>
+                        <td>$$</td>
+                        <td>Spring, Fall</td>
+                        <td>Fushimi Inari Shrine</td>
+                    </tr>
+                    <tr class="best-pick">
+                        <td>Bali, Indonesia</td>
+                        <td>Beaches, Spirituality, Value</td>
+                        <td>$</td>
+                        <td>Dry Season (Apr-Oct)</td>
+                        <td>Ubud Monkey Forest</td>
+                    </tr>
+                    <tr>
+                        <td>Santorini, Greece</td>
+                        <td>Romance, Views, Photography</td>
+                        <td>$$</td>
+                        <td>Late Spring, Early Fall</td>
+                        <td>Oia Sunset</td>
+                    </tr>
+                    <tr>
+                        <td>New York City, USA</td>
+                        <td>Urban Culture, Shopping, Arts</td>
+                        <td>$$</td>
+                        <td>Spring, Fall</td>
+                        <td>Central Park</td>
+                    </tr>
+                    <tr>
+                        <td>Cape Town, South Africa</td>
+                        <td>Nature, Adventure, Wine</td>
+                        <td>$$</td>
+                        <td>Nov-Apr</td>
+                        <td>Table Mountain</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Interactive Map -->
+        <div class="map-container">
+            <div class="map-overlay">
+                <h2 class="map-title">Explore Destinations</h2>
+                <p>Our interactive map allows you to discover destinations around the world. Click on markers to learn more about each location.</p>
+                <p style="margin-top: 20px;">
+                    <strong>Featured Regions:</strong>
+                </p>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li>Mediterranean Europe</li>
+                    <li>Southeast Asia</li>
+                    <li>Caribbean Islands</li>
+                    <li>South America</li>
+                    <li>East Africa</li>
+                </ul>
+                <p style="margin-top: 20px;">
+                    Click on a region to zoom in and explore specific destinations with detailed information, photos, and travel tips.
+                </p>
+            </div>
+			<div style="
+			width: 100%; 
+			height: 100%; 
+			display: flex; 
+			justify-content: center; 
+			align-items: center; 
+			background-image: url('map.jpg');
+			background-size: cover;       /* Ensures image covers the entire div */
+			background-position: center; /* Centers the image */
+			background-repeat: no-repeat; /* Prevents repeating */
+			background-color: #eaeaea;   /* Fallback if image fails to load */
+		">
+			
+		</div>
+        </div>
+    </section>
+
+    <!-- Seasonal Recommendations -->
+    <section style="background-color: #f5f5f5; padding: 60px 0;">
+        <div class="container">
+            <h2 class="section-title">Seasonal Recommendations</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
+                Planning a trip but not sure where to go? Here are our top recommendations based on the current season.
+            </p>
+            
+            <div class="destinations-grid">
+                <div class="destination-card">
+                    <img src="spring.jpg" alt="Spring: Kyoto, Japan" class="destination-image">
+                    <div class="destination-info">
+                        <h3 class="destination-name">Spring</h3>
+                        <p class="destination-description">Cherry blossoms in Japan, tulip fields in Netherlands, and mild Mediterranean climates make spring perfect for these destinations.</p>
+                        <ul style="padding-left: 20px; margin-top: 10px;">
+                            <li>Kyoto, Japan</li>
+                            <li>Amsterdam, Netherlands</li>
+                            <li>Seville, Spain</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="destination-card">
+                    <img src="summer.jpg" alt="Summer: Santorini, Greece" class="destination-image">
+                    <div class="destination-info">
+                        <h3 class="destination-name">Summer</h3>
+                        <p class="destination-description">Long days and sunshine make summer ideal for beach destinations, northern European cities, and scenic coastal routes.</p>
+                        <ul style="padding-left: 20px; margin-top: 10px;">
+                            <li>Greek Islands</li>
+                            <li>Scandinavian Capitals</li>
+                            <li>Canadian Rockies</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="destination-card">
+                    <img src="fall.jpg" alt="Fall: New England, USA" class="destination-image">
+                    <div class="destination-info">
+                        <h3 class="destination-name">Fall</h3>
+                        <p class="destination-description">Colorful foliage, fewer crowds, and pleasant temperatures make fall perfect for these scenic destinations.</p>
+                        <ul style="padding-left: 20px; margin-top: 10px;">
+                            <li>New England, USA</li>
+                            <li>Tuscany, Italy</li>
+                            <li>Kyoto, Japan</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="destination-card">
+                    <img src="winter.jpg" alt="Winter: Swiss Alps" class="destination-image">
+                    <div class="destination-info">
+                        <h3 class="destination-name">Winter</h3>
+                        <p class="destination-description">Snow-covered mountains, festive markets, and tropical escapes from the northern winter make these destinations ideal.</p>
+                        <ul style="padding-left: 20px; margin-top: 10px;">
+                            <li>Swiss Alps</li>
+                            <li>Thailand Beaches</li>
+                            <li>Vienna, Austria</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+        <div class="container">
+            <h2 class="section-title">Get Destination Inspiration</h2>
+            <p style="text-align: center; max-width: 600px; margin: 0 auto 30px;">
+                Subscribe to our newsletter for the latest travel tips, destination guides, and exclusive offers.
+            </p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="cta-button">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Wanderlust</h3>
+                    <p>Your ultimate guide to exploring the world's most amazing destinations.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="destinations.html">Destinations</a></li>
+                        <li><a href="tips.html">Travel Tips</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="team.html">Our Team</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">Facebook</a>
+                        <a href="#" class="social-icon">Instagram</a>
+                        <a href="#" class="social-icon">Twitter</a>
+                        <a href="#" class="social-icon">Pinterest</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Wanderlust. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Toggle mobile menu
+        const burger = document.querySelector('.burger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        burger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            burger.classList.toggle('toggle');
+        });
+        
+        // Filter functionality (simplified for demonstration)
+        document.querySelector('.filter-button').addEventListener('click', function() {
+            alert('Filter functionality would be implemented here in a real application');
+            // In a real application, this would filter the destinations based on the selected criteria
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations - Wanderlust</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Internal CSS specific to destinations page -->
+    <style>
+        /* Hero section styles */
+        .destinations-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('destinations.jpg') no-repeat center center;
+            background-size: cover;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        /* Filter section styles */
+        .filter-container {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .filter-options select, .filter-options input {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .filter-button {
+            background-color: #FF5A5F;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .filter-button:hover {
+            background-color: #FF3D42;
+        }
+        
+        /* Destinations grid */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .destination-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: white;
+        }
+        
+        .destination-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .destination-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .destination-info {
+            padding: 20px;
+        }
+        
+        .destination-name {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .destination-region {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .destination-description {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .destination-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+        
+        .destination-rating {
+            color: #FF5A5F;
+            font-weight: 500;
+        }
+        
+        /* Featured destination styles */
+        .featured-destination {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 60px;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .featured-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        
+        .featured-info {
+            padding: 30px;
+        }
+        
+        .featured-label {
+            display: inline-block;
+            background-color: #FF5A5F;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        
+        .featured-name {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .featured-description {
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        /* Continent sections */
+        .continent-section {
+            margin-top: 60px;
+        }
+        
+        .continent-title {
+            position: relative;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+            border-left: 5px solid #FF5A5F;
+            padding-left: 15px;
+        }
+        
+        /* Responsive design for destinations grid */
+        @media screen and (min-width: 768px) {
+            .featured-destination {
+                flex-direction: row;
+            }
+            
+            .featured-image {
+                width: 50%;
+                height: auto;
+            }
+            
+            .featured-info {
+                width: 50%;
+            }
+        }
+        
+        @media screen and (max-width: 768px) {
+            .destinations-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .featured-image {
+                height: 300px;
+            }
+        }
+        
+        /* Map section */
+        .map-container {
+            height: 500px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .map-overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 30px;
+            width: 350px;
+            height: 100%;
+            overflow-y: auto;
+        }
+        
+        .map-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Destination comparison table */
+        .comparison-table {
+            margin-top: 60px;
+            overflow-x: auto;
+        }
+        
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .comparison-table th {
+            background-color: #FF5A5F;
+            color: white;
+            font-weight: 600;
+            text-align: left;
+            padding: 15px;
+        }
+        
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .comparison-table tr:hover {
+            background-color: #f0f0f0;
+        }
+        
+        /* Custom highlight for best picks */
+        .best-pick {
+            background-color: rgba(255, 90, 95, 0.1);
+            font-weight: 500;
+        }

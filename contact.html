@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - Wanderlust</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Internal CSS specific to contact page -->
+    <style>
+      .contact-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 30px;
+      }
+
+      .contact-info {
+        flex: 1;
+        min-width: 300px;
+        margin-right: 30px;
+        margin-bottom: 30px;
+      }
+
+      .contact-form {
+        flex: 2;
+        min-width: 300px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+      }
+
+      .form-control:focus {
+        border-color: #ff5a5f;
+        outline: none;
+      }
+
+      .form-control.invalid {
+        border-color: #ff3b30;
+      }
+
+      .error-message {
+        color: #ff3b30;
+        font-size: 0.85rem;
+        margin-top: 5px;
+        display: none;
+      }
+
+      textarea.form-control {
+        resize: vertical;
+        min-height: 150px;
+      }
+
+      .submit-btn {
+        background-color: #ff5a5f;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: background-color 0.3s;
+      }
+
+      .submit-btn:hover {
+        background-color: #ff3d42;
+      }
+
+      .contact-details {
+        margin-top: 30px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .contact-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #f5f5f5;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+      }
+
+      /* Map styles */
+      .map-container {
+        margin-top: 50px;
+        width: 100%;
+        height: 400px;
+        background-color: #f5f5f5;
+        border-radius: 8px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .map-placeholder {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        width: 80%;
+      }
+
+      /* Success message */
+      #success-message {
+        background-color: #4caf50;
+        color: white;
+        text-align: center;
+        padding: 15px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="logo">
+        <h1>Wanderlust</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="tips.html">Travel Tips</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="team.html">Our Team</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header
+      style="background-color: #f5f5f5; padding: 60px 0; text-align: center"
+    >
+      <div class="container">
+        <h1>Contact Us</h1>
+        <p>Have questions or suggestions? We'd love to hear from you!</p>
+      </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="container">
+      <div id="success-message">
+        Your message has been sent successfully! We'll get back to you soon.
+      </div>
+      <!-- <div class="contact-container">
+        <div class="contact-info">
+          <h2>Get In Touch</h2>
+          <p>
+            Feel free to reach out with any questions about destinations, travel
+            planning, or partnership opportunities. Our team is here to help
+            make your travel dreams a reality.
+          </p>
+
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div>
+                <h3>Our Location</h3>
+                <p>123 Adventure Avenue, Traveltown, TX 98765</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">📧</div>
+              <div>
+                <h3>Email Us</h3>
+                <p>info@wanderlust-travel.com</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">📞</div>
+              <div>
+                <h3>Call Us</h3>
+                <p>+1 (555) 123-4567</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">🕒</div>
+              <div>
+                <h3>Working Hours</h3>
+                <p>Monday - Friday: 9am - 6pm<br />Saturday: 10am - 4pm</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <h2>Send Us a Message</h2>
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input
+                type="text"
+                id="name"
+                class="form-control"
+                placeholder="John Doe"
+                required
+              />
+              <div class="error-message" id="name-error">
+                Please enter your name
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                placeholder="johndoe@example.com"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                required
+              />
+              <div class="error-message" id="email-error">
+                Please enter a valid email address
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                class="form-control"
+                placeholder="(555) 123-4567"
+                pattern="[\(]?[0-9]{3}[\)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}"
+              />
+              <div class="error-message" id="phone-error">
+                Please enter a valid phone number
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <select id="subject" class="form-control" required>
+                <option value="" disabled selected>Select a subject</option>
+                <option value="general">General Inquiry</option>
+                <option value="booking">Booking Information</option>
+                <option value="destinations">Destination Questions</option>
+                <option value="feedback">Feedback</option>
+                <option value="partnership">Partnership</option>
+              </select>
+              <div class="error-message" id="subject-error">
+                Please select a subject
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea
+                id="message"
+                class="form-control"
+                placeholder="Write your message here..."
+                required
+              ></textarea>
+              <div class="error-message" id="message-error">
+                Please enter your message
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="travel-date">When do you plan to travel?</label>
+              <input
+                type="date"
+                id="travel-date"
+                class="form-control"
+                min="2025-05-03"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>What are your travel interests?</label>
+              <div style="display: flex; flex-wrap: wrap; gap: 15px">
+                <label style="display: inline-flex; align-items: center">
+                  <input type="checkbox" name="interests" value="culture" />
+                  <span style="margin-left: 5px">Culture & History</span>
+                </label>
+                <label style="display: inline-flex; align-items: center">
+                  <input type="checkbox" name="interests" value="adventure" />
+                  <span style="margin-left: 5px">Adventure</span>
+                </label>
+                <label style="display: inline-flex; align-items: center">
+                  <input type="checkbox" name="interests" value="food" />
+                  <span style="margin-left: 5px">Food & Cuisine</span>
+                </label>
+                <label style="display: inline-flex; align-items: center">
+                  <input type="checkbox" name="interests" value="relaxation" />
+                  <span style="margin-left: 5px">Relaxation</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Have you traveled with us before?</label>
+              <div style="display: flex; gap: 15px">
+                <label style="display: inline-flex; align-items: center">
+                  <input type="radio" name="previous-travel" value="yes" />
+                  <span style="margin-left: 5px">Yes</span>
+                </label>
+                <label style="display: inline-flex; align-items: center">
+                  <input type="radio" name="previous-travel" value="no" />
+                  <span style="margin-left: 5px">No</span>
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div> -->
+
+      <!-- Map Section -->
+      <div class="map-container">
+        <div class="map-placeholder">
+          <h3>Our Location</h3>
+          <p>123 Adventure Avenue, Traveltown, TX 98765</p>
+          <p style="color: #888">[Interactive Map Would Display Here]</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <!-- <section style="background-color: #f5f5f5; padding: 60px 0">
+      <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div style="max-width: 800px; margin: 0 auto">
+          <div style="margin-bottom: 20px">
+            <h3>How do I book a trip through Wanderlust?</h3>
+            <p>
+              We provide travel guides and recommendations but don't handle
+              bookings directly. We can connect you with trusted travel partners
+              - just mention this in your contact form!
+            </p>
+          </div>
+          <div style="margin-bottom: 20px">
+            <h3>Do you offer custom itineraries?</h3>
+            <p>
+              Yes! Fill out our contact form with your preferences, and our
+              travel experts will create a personalized itinerary tailored to
+              your interests and budget.
+            </p>
+          </div>
+          <div style="margin-bottom: 20px">
+            <h3>How far in advance should I plan my trip?</h3>
+            <p>
+              For popular destinations, we recommend planning at least 3-6
+              months in advance, especially during peak seasons. Last-minute
+              trips are possible too, but may have limited options.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Footer -->
+    <!-- <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Wanderlust</h3>
+            <p>
+              Your ultimate guide to exploring the world's most amazing
+              destinations.
+            </p>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="destinations.html">Destinations</a></li>
+              <li><a href="tips.html">Travel Tips</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="team.html">Our Team</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <div class="social-icons">
+              <a href="#" class="social-icon">Facebook</a>
+              <a href="#" class="social-icon">Instagram</a>
+              <a href="#" class="social-icon">Twitter</a>
+              <a href="#" class="social-icon">Pinterest</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Wanderlust. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer> -->
+
+    <!-- JavaScript for form validation -->
+    <script>
+      // Get form elements
+      const form = document.getElementById("contact-form");
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+      const phoneInput = document.getElementById("phone");
+      const subjectInput = document.getElementById("subject");
+      const messageInput = document.getElementById("message");
+
+      // Error messages
+      const nameError = document.getElementById("name-error");
+      const emailError = document.getElementById("email-error");
+      const phoneError = document.getElementById("phone-error");
+      const subjectError = document.getElementById("subject-error");
+      const messageError = document.getElementById("message-error");
+
+      // Success message
+      const successMessage = document.getElementById("success-message");
+
+      // Form validation
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        let isValid = true;
+
+        // Validate name
+        if (nameInput.value.trim() === "") {
+          showError(nameInput, nameError, "Please enter your name");
+          isValid = false;
+        } else {
+          hideError(nameInput, nameError);
+        }
+
+        // Validate email
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(emailInput.value)) {
+          showError(
+            emailInput,
+            emailError,
+            "Please enter a valid email address"
+          );
+          isValid = false;
+        } else {
+          hideError(emailInput, emailError);
+        }
+
+        // Validate phone (optional)
+        if (phoneInput.value.trim() !== "") {
+          const phonePattern =
+            /^[\(]?[0-9]{3}[\)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/;
+          if (!phonePattern.test(phoneInput.value)) {
+            showError(
+              phoneInput,
+              phoneError,
+              "Please enter a valid phone number"
+            );
+            isValid = false;
+          } else {
+            hideError(phoneInput, phoneError);
+          }
+        }
+
+        // Validate subject
+        if (subjectInput.value === "") {
+          showError(subjectInput, subjectError, "Please select a subject");
+          isValid = false;
+        } else {
+          hideError(subjectInput, subjectError);
+        }
+
+        // Validate message
+        if (messageInput.value.trim() === "") {
+          showError(messageInput, messageError, "Please enter your message");
+          isValid = false;
+        } else {
+          hideError(messageInput, messageError);
+        }
+
+        // If form is valid, show success message
+        if (isValid) {
+          form.reset();
+          successMessage.style.display = "block";
+
+          // Hide success message after 5 seconds
+          setTimeout(function () {
+            successMessage.style.display = "none";
+          }, 5000);
+
+          // Scroll to top of form
+          successMessage.scrollIntoView({ behavior: "smooth" });
+        }
+      });
+
+      // Input validation on blur
+      nameInput.addEventListener("blur", function () {
+        if (nameInput.value.trim() === "") {
+          showError(nameInput, nameError, "Please enter your name");
+        } else {
+          hideError(nameInput, nameError);
+        }
+      });
+
+      emailInput.addEventListener("blur", function () {
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(emailInput.value)) {
+          showError(
+            emailInput,
+            emailError,
+            "Please enter a valid email address"
+          );
+        } else {
+          hideError(emailInput, emailError);
+        }
+      });
+
+      phoneInput.addEventListener("blur", function () {
+        if (phoneInput.value.trim() !== "") {
+          const phonePattern =
+            /^[\(]?[0-9]{3}[\)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/;
+          if (!phonePattern.test(phoneInput.value)) {
+            showError(
+              phoneInput,
+              phoneError,
+              "Please enter a valid phone number"
+            );
+          } else {
+            hideError(phoneInput, phoneError);
+          }
+        }
+      });
+
+      // Show error message
+      function showError(input, errorElement, message) {
+        input.classList.add("invalid");
+        errorElement.textContent = message;
+        errorElement.style.display = "block";
+      }
+
+      // Hide error message
+      function hideError(input, errorElement) {
+        input.classList.remove("invalid");
+        errorElement.style.display = "none";
+      }
+
+      // Toggle mobile menu
+      const burger = document.querySelector(".burger");
+      const navLinks = document.querySelector(".nav-links");
+
+      burger.addEventListener("click", function () {
+        navLinks.classList.toggle("nav-active");
+        burger.classList.toggle("toggle");
+      });
+    </script>
+  </body>
+</html>

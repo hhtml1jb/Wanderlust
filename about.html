@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Wanderlust</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Internal CSS specific to about page -->
+    <style>
+      /* About page specific styles */
+      .about-header {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+          url("/api/placeholder/1200/600") no-repeat center center;
+        background-size: cover;
+        height: 60vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      .about-header h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+      }
+
+      .about-header p {
+        font-size: 1.2rem;
+        max-width: 700px;
+      }
+
+      .mission-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 60px 0;
+      }
+
+      .mission-image {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .mission-image img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .mission-content {
+        flex: 1;
+        min-width: 300px;
+        padding: 0 30px;
+      }
+
+      .mission-content h2 {
+        position: relative;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+      }
+
+      .mission-content h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background-color: #ff5a5f;
+      }
+
+      .mission-statement {
+        font-size: 1.1rem;
+        font-style: italic;
+        color: #555;
+        margin-bottom: 20px;
+        padding-left: 20px;
+        border-left: 3px solid #ff5a5f;
+      }
+
+      .value-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 40px 0;
+      }
+
+      .value-card {
+        flex: 1;
+        min-width: 250px;
+        margin: 15px;
+        background-color: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease;
+      }
+
+      .value-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .value-icon {
+        font-size: 2.5rem;
+        color: #ff5a5f;
+        margin-bottom: 20px;
+      }
+
+      .timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: 60px auto;
+      }
+
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        background-color: #f5f5f5;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -3px;
+      }
+
+      .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        width: 50%;
+        box-sizing: border-box;
+      }
+
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: -13px;
+        background-color: white;
+        border: 4px solid #ff5a5f;
+        top: 20px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      .left {
+        left: 0;
+      }
+
+      .right {
+        left: 50%;
+      }
+
+      .right::after {
+        left: -13px;
+      }
+
+      .timeline-content {
+        padding: 20px;
+        background-color: white;
+        position: relative;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .timeline-year {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background-color: #ff5a5f;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      /* Testimonials section */
+      .testimonials-section {
+        background-color: #f5f5f5;
+        padding: 60px 0;
+      }
+
+      .testimonials-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .testimonial-card {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        width: 350px;
+        position: relative;
+      }
+
+      .testimonial-card::before {
+        content: '"';
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 5rem;
+        font-family: Georgia, serif;
+        color: rgba(255, 90, 95, 0.1);
+        line-height: 1;
+      }
+
+      .testimonial-text {
+        font-style: italic;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+      }
+
+      .author-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 15px;
+        object-fit: cover;
+      }
+
+      .author-info h4 {
+        margin: 0;
+        color: #333;
+      }
+
+      .author-info p {
+        margin: 5px 0 0;
+        color: #777;
+        font-size: 0.9rem;
+      }
+
+      /* Partners section */
+      .partners-section {
+        padding: 60px 0;
+        text-align: center;
+      }
+
+      .partners-logos {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        margin-top: 40px;
+      }
+
+      .partner-logo {
+        width: 150px;
+        height: 80px;
+        background-color: #f5f5f5;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        filter: grayscale(100%);
+        opacity: 0.7;
+        transition: all 0.3s ease;
+      }
+
+      .partner-logo:hover {
+        filter: grayscale(0%);
+        opacity: 1;
+      }
+
+      /* Stats section */
+      .stats-section {
+        background-color: #2c3e50;
+        color: white;
+        padding: 60px 0;
+        text-align: center;
+      }
+
+      .stats-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 40px;
+      }
+
+      .stat-item {
+        padding: 20px;
+        width: 200px;
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: #ff5a5f;
+      }
+
+      .stat-label {
+        font-size: 1.1rem;
+      }
+
+      /* CTA section */
+      .cta-section {
+        text-align: center;
+        padding: 60px 0;
+      }
+
+      /* Responsive design */
+      @media screen and (max-width: 768px) {
+        .mission-container {
+          flex-direction: column;
+        }
+
+        .mission-content {
+          padding: 30px 0;
+        }
+
+        .timeline::after {
+          left: 31px;
+        }
+
+        .timeline-item {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+        }
+
+        .timeline-item::after {
+          left: 18px;
+        }
+
+        .right {
+          left: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="logo">
+        <h1>Wanderlust</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="tips.html">Travel Tips</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="team.html">Our Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+
+    <!-- About Header -->
+    <header class="about-header">
+      <h1>About Wanderlust</h1>
+      <p>
+        Inspiring travelers to explore the world with confidence, curiosity, and
+        respect
+      </p>
+    </header>
+
+    <!-- Our Story Section -->
+    <section class="container">
+      <div class="mission-container">
+        <div class="mission-image">
+          <img src="/api/placeholder/600/400" alt="Wanderlust team exploring" />
+        </div>
+        <div class="mission-content">
+          <h2>Our Story</h2>
+          <div class="mission-statement">
+            "To inspire and empower travelers to explore the world
+            authentically, responsibly, and with a deeper understanding of the
+            places and cultures they encounter."
+          </div>
+          <p>
+            Wanderlust was born from a shared passion for travel and a desire to
+            help others experience the world in meaningful ways. Founded in 2018
+            by a team of experienced travelers and industry professionals, we
+            set out to create a comprehensive resource that goes beyond typical
+            tourism.
+          </p>
+          <p>
+            What began as a small blog has grown into a trusted travel platform
+            offering detailed destination guides, expert advice, and authentic
+            perspectives from around the globe. We believe that travel is
+            transformative—it broadens horizons, challenges preconceptions, and
+            creates lasting connections.
+          </p>
+          <p>
+            Our mission is to equip travelers with the knowledge, confidence,
+            and resources to embark on journeys that are not only enjoyable but
+            also enriching and responsible.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Values Section -->
+    <section style="background-color: #f5f5f5; padding: 60px 0">
+      <div class="container">
+        <h2 class="section-title">Our Core Values</h2>
+        <div class="value-cards">
+          <div class="value-card">
+            <div class="value-icon">🌍</div>
+            <h3>Authenticity</h3>
+            <p>
+              We promote genuine cultural connections and experiences that go
+              beyond surface-level tourism, allowing travelers to experience
+              destinations as they truly are.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">♻️</div>
+            <h3>Sustainability</h3>
+            <p>
+              We advocate for responsible travel practices that minimize
+              environmental impact and support local communities, ensuring
+              destinations remain vibrant for future generations.
+            </p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">🤝</div>
+            <h3>Inclusivity</h3>
+            <p>
+              We believe travel should be accessible to everyone, regardless of
+              background, ability, or budget, and strive to provide resources
+              that serve diverse travelers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey Timeline Section -->
+    <section class="container">
+      <h2 class="section-title">Our Journey</h2>
+      <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <span class="timeline-year">2018</span>
+            <h3>Where It All Began</h3>
+            <p>
+              Wanderlust launched as a small travel blog focused on authentic
+              travel experiences in Southeast Asia. Our first guides covered
+              Thailand, Vietnam, and Indonesia.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <span class="timeline-year">2019</span>
+            <h3>Expanding Horizons</h3>
+            <p>
+              We expanded our coverage to include destinations across Europe and
+              South America. Our community grew to over 100,000 monthly readers.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <span class="timeline-year">2020</span>
+            <h3>Adapting to Change</h3>
+            <p>
+              During the global pandemic, we pivoted to provide virtual travel
+              experiences and resources for future trip planning, helping our
+              community stay connected to the world.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <span class="timeline-year">2021</span>
+            <h3>New Partnerships</h3>
+            <p>
+              We formed partnerships with sustainable tourism organizations and
+              local guides worldwide to provide more authentic insider
+              perspectives.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <span class="timeline-year">2022</span>
+            <h3>Award Recognition</h3>
+            <p>
+              Wanderlust received recognition as one of the "Top Travel
+              Resources" by Travel + Leisure magazine and expanded our team to
+              include experts from various travel niches.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <span class="timeline-year">2023</span>
+            <h3>Sustainability Initiative</h3>
+            <p>
+              We launched our "Travel Better" initiative, focusing on
+              sustainable and responsible travel practices, including
+              partnerships with conservation organizations.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <span class="timeline-year">2024</span>
+            <h3>Global Community</h3>
+            <p>
+              Our community expanded to over 1 million monthly readers across
+              150+ countries, with content available in multiple languages.
+            </p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <span class="timeline-year">2025</span>
+            <h3>The Future</h3>
+            <p>
+              We continue to evolve and grow, with exciting new projects and
+              partnerships on the horizon as we help more travelers explore the
+              world meaningfully.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <!-- <section class="testimonials-section">
+      <div class="container">
+        <h2 class="section-title">What Our Community Says</h2>
+        <div class="testimonials-container">
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              Wanderlust has completely transformed how I approach travel. Their
+              detailed guides and authentic recommendations helped me discover
+              hidden gems in Japan that I would have never found otherwise.
+            </p>
+            <div class="testimonial-author">
+              <img
+                src="/api/placeholder/60/60"
+                alt="Sarah Johnson"
+                class="author-image"
+              />
+              <div class="author-info">
+                <h4>Sarah Johnson</h4>
+                <p>Kyoto, Japan</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              As a solo female traveler, safety is my top priority. Wanderlust's
+              practical advice and honest insights have given me the confidence
+              to explore destinations I previously thought were out of reach.
+            </p>
+            <div class="testimonial-author">
+              <img
+                src="/api/placeholder/60/60"
+                alt="Lena Rodriguez"
+                class="author-image"
+              />
+              <div class="author-info">
+                <h4>Lena Rodriguez</h4>
+                <p>Marrakech, Morocco</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              What sets Wanderlust apart is their commitment to sustainable
+              travel. Their resources have helped me make more responsible
+              choices without sacrificing authentic experiences. Now I travel
+              with purpose!
+            </p>
+            <div class="testimonial-author">
+              <img
+                src="/api/placeholder/60/60"
+                alt="Michael Chen"
+                class="author-image"
+              />
+              <div class="author-info">
+                <h4>Michael Chen</h4>
+                <p>Costa Rica</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+      <div class="container">
+        <h2 class="section-title" style="color: white">
+          Wanderlust By The Numbers
+        </h2>
+        <div class="stats-container">
+          <div class="stat-item">
+            <div class="stat-number">1M+</div>
+            <div class="stat-label">Monthly Readers</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">150+</div>
+            <div class="stat-label">Countries Covered</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">5K+</div>
+            <div class="stat-label">Travel Guides</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">25K+</div>
+            <div class="stat-label">Travelers Assisted</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners-section">
+      <div class="container">
+        <h2 class="section-title">Our Partners & Features</h2>
+        <div class="partners-logos">
+          <div class="partner-logo">Travel + Leisure</div>
+          <div class="partner-logo">National Geographic</div>
+          <div class="partner-logo">Lonely Planet</div>
+          <div class="partner-logo">Sustainable Travel Int'l</div>
+          <div class="partner-logo">Tourism Authority</div>
+          <div class="partner-logo">World Nomads</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2 class="section-title">Join Our Community</h2>
+        <p style="max-width: 700px; margin: 0 auto 30px; text-align: center">
+          Be part of our global community of travelers who are passionate about
+          exploring the world responsibly and authentically.
+        </p>
+        <a href="contact.html" class="cta-button">Get In Touch</a>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter">
+      <div class="container">
+        <h2 class="section-title">Stay Connected</h2>
+        <p style="text-align: center; max-width: 600px; margin: 0 auto 30px">
+          Subscribe to our newsletter for the latest travel inspiration,
+          destination guides, and exclusive content.
+        </p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit" class="cta-button">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Wanderlust</h3>
+            <p>
+              Your ultimate guide to exploring the world's most amazing
+              destinations.
+            </p>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="destinations.html">Destinations</a></li>
+              <li><a href="tips.html">Travel Tips</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="team.html">Our Team</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <div class="social-icons">
+              <a href="#" class="social-icon">Facebook</a>
+              <a href="#" class="social-icon">Instagram</a>
+              <a href="#" class="social-icon">Twitter</a>
+              <a href="#" class="social-icon">Pinterest</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Wanderlust. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+      // Toggle mobile menu
+      const burger = document.querySelector(".burger");
+      const navLinks = document.querySelector(".nav-links");
+
+      burger.addEventListener("click", () => {
+        navLinks.classList.toggle("nav-active");
+        burger.classList.toggle("toggle");
+      });
+
+      // Animate stats on scroll
+      const statNumbers = document.querySelectorAll(".stat-number");
+      let animated = false;
+
+      function animateStats() {
+        if (animated) return;
+
+        const statsSection = document.querySelector(".stats-section");
+        const statsSectionTop = statsSection.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+
+        if (statsSectionTop < windowHeight - 100) {
+          statNumbers.forEach((stat) => {
+            const targetValue = stat.textContent;
+            let currentValue = 0;
+            const duration = 2000; // 2 seconds
+            const interval = 20; // Update every 20ms
+
+            // Remove the "+" if present to get the numeric value
+            const numericValue = parseInt(targetValue.replace(/\D/g, ""));
+            const increment = numericValue / (duration / interval);
+
+            const timer = setInterval(() => {
+              currentValue += increment;
+              if (currentValue >= numericValue) {
+                clearInterval(timer);
+                currentValue = numericValue;
+              }
+              stat.textContent =
+                Math.floor(currentValue) +
+                (targetValue.includes("+") ? "+" : "");
+            }, interval);
+          });
+
+          animated = true;
+        }
+      }
+
+      window.addEventListener("scroll", animateStats);
+    </script>
+  </body>
+</html>

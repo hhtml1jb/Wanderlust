@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wanderlust - Discover Your Next Adventure</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Internal CSS -->
+    <style>
+      /* Internal CSS styles */
+      #hero-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+          url("hero.jpg") no-repeat center center;
+        background-size: cover;
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      .feature-card {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .cta-button {
+        display: inline-block;
+        background-color: #ff5a5f;
+        color: white;
+        padding: 12px 24px;
+        font-size: 1.1rem;
+        border-radius: 30px;
+        text-decoration: none;
+        margin-top: 20px;
+        transition: background-color 0.3s ease;
+      }
+
+      .cta-button:hover {
+        background-color: #ff3d42;
+      }
+
+      @media (max-width: 768px) {
+        #hero-section {
+          height: 50vh;
+        }
+
+        .features-container {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+      <div class="logo">
+        <h1>Wanderlust</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="tips.html">Travel Tips</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="team.html">Our Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero-section">
+      <h1>Explore The World With Us</h1>
+      <p>
+        Discover breathtaking destinations and create unforgettable memories
+      </p>
+      <a href="destinations.html" class="cta-button">Start Exploring</a>
+    </header>
+
+    <!-- Featured Destinations Section -->
+    <section class="container">
+      <h2 class="section-title">Featured Destinations</h2>
+      <div class="features-container">
+        <div class="feature-card">
+          <img
+            src="Santorini.jpg"
+            alt="Santorini, Greece"
+            class="feature-image"
+          />
+          <h3>Santorini, Greece</h3>
+          <p>
+            Experience the stunning white-washed buildings and crystal-clear
+            waters of this Mediterranean paradise.
+          </p>
+          <a href="destinations.html#santorini" class="read-more"
+            >Learn More →</a
+          >
+        </div>
+        <div class="feature-card">
+          <img src="Kyoto.jpg" alt="Kyoto, Japan" class="feature-image" />
+          <h3>Kyoto, Japan</h3>
+          <p>
+            Immerse yourself in traditional Japanese culture with ancient
+            temples and beautiful gardens.
+          </p>
+          <a href="destinations.html#kyoto" class="read-more">Learn More →</a>
+        </div>
+        <div class="feature-card">
+          <img src="Machu.jpg" alt="Machu Picchu, Peru" class="feature-image" />
+          <h3>Machu Picchu, Peru</h3>
+          <p>
+            Discover the ancient Incan citadel set high in the Andes Mountains
+            above the Urubamba River valley.
+          </p>
+          <a href="destinations.html#machu-picchu" class="read-more"
+            >Learn More →</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+      <div class="container">
+        <h2 class="section-title">What Our Travelers Say</h2>
+        <div class="testimonial-slider">
+          <div class="testimonial-card">
+            <p>
+              "Wanderlust helped me plan the perfect trip to Bali. Their tips
+              were invaluable and made my experience truly memorable."
+            </p>
+            <div class="testimonial-author">- Sarah Johnson</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section
+      class="newsletter"
+      style="background-color: #f2f2f2; padding: 50px 0"
+    >
+      <div class="container">
+        <h2 class="section-title">Stay Updated</h2>
+        <p>
+          Subscribe to our newsletter for travel tips, destination guides, and
+          exclusive offers.
+        </p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Enter your email" required />
+          <button type="submit" class="cta-button">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Wanderlust</h3>
+            <p>
+              Your ultimate guide to exploring the world's most amazing
+              destinations.
+            </p>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="destinations.html">Destinations</a></li>
+              <li><a href="tips.html">Travel Tips</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <div class="social-icons">
+              <a href="#" class="social-icon">Facebook</a>
+              <a href="#" class="social-icon">Instagram</a>
+              <a href="#" class="social-icon">Twitter</a>
+              <a href="#" class="social-icon">Pinterest</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Wanderlust. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+      // Toggle mobile menu
+      const burger = document.querySelector(".burger");
+      const navLinks = document.querySelector(".nav-links");
+
+      burger.addEventListener("click", () => {
+        navLinks.classList.toggle("nav-active");
+        burger.classList.toggle("toggle");
+      });
+
+      // Simple testimonial rotation (can be expanded)
+      const testimonials = [
+        {
+          text: "Wanderlust helped me plan the perfect trip to Bali. Their tips were invaluable and made my experience truly memorable.",
+          author: "Sarah Johnson",
+        },
+        {
+          text: "Thanks to Wanderlust's detailed guides, I discovered hidden gems in Paris that most tourists never see.",
+          author: "Michael Chen",
+        },
+        {
+          text: "The personalized itinerary suggestions saved me hours of research and led to the best vacation of my life!",
+          author: "Emma Rodriguez",
+        },
+      ];
+
+      let currentTestimonial = 0;
+      const testimonialText = document.querySelector(".testimonial-card p");
+      const testimonialAuthor = document.querySelector(".testimonial-author");
+
+      function rotateTestimonials() {
+        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        testimonialText.textContent = `"${testimonials[currentTestimonial].text}"`;
+        testimonialAuthor.textContent = `- ${testimonials[currentTestimonial].author}`;
+      }
+
+      setInterval(rotateTestimonials, 5000);
+    </script>
+  </body>
+</html>

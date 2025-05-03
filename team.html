@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Team - Wanderlust</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Internal CSS specific to team page -->
+    <style>
+      .team-header {
+        background-color: #f5f5f5;
+        padding: 60px 0;
+        text-align: center;
+      }
+
+      .team-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .team-member {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 280px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .team-member:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .member-image {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+      }
+
+      .member-info {
+        padding: 20px;
+        text-align: center;
+      }
+
+      .member-name {
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+        color: #333;
+      }
+
+      .member-position {
+        color: #ff5a5f;
+        font-weight: 500;
+        margin-bottom: 15px;
+      }
+
+      .member-bio {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 15px;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .social-link {
+        width: 36px;
+        height: 36px;
+        background-color: #f5f5f5;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #555;
+        text-decoration: none;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      .social-link:hover {
+        background-color: #ff5a5f;
+        color: white;
+      }
+
+      .refresh-button {
+        display: block;
+        margin: 30px auto;
+        background-color: #ff5a5f;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: background-color 0.3s;
+      }
+
+      .refresh-button:hover {
+        background-color: #ff3d42;
+      }
+
+      .team-values {
+        margin-top: 60px;
+        background-color: #f9f9f9;
+        padding: 50px 0;
+      }
+
+      .values-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      .value-item {
+        flex: 1;
+        min-width: 250px;
+        padding: 20px;
+        margin: 10px;
+        text-align: center;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .value-icon {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #ff5a5f;
+      }
+
+      /* Inline style for the transition effect */
+      #team-list {
+        transition: opacity 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>this is our team page</h1>
+    <!-- Navigation Bar -->
+    <!-- <nav class="navbar">
+      <div class="logo">
+        <h1>Wanderlust</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="destinations.html">Destinations</a></li>
+        <li><a href="tips.html">Travel Tips</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="team.html" class="active">Our Team</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav> -->
+
+    <!-- Team Header -->
+    <!-- <header class="team-header">
+      <div class="container">
+        <h1>Meet Our Amazing Team</h1>
+        <p>
+          A passionate group of travel enthusiasts dedicated to helping you
+          discover the world
+        </p>
+      </div>
+    </header> -->
+
+    <!-- Team Members Section -->
+    <!-- <section class="container">
+      <h2 class="section-title">The Wanderlust Team</h2>
+      <p style="text-align: center; max-width: 800px; margin: 0 auto 30px">
+        Our team members are experienced travelers who have explored dozens of
+        countries and are passionate about sharing their knowledge to help you
+        plan the perfect trip.
+      </p>
+
+      <button id="refresh-team" class="refresh-button">
+        Shuffle Team Members
+      </button>
+
+      <div id="team-list" class="team-container">
+        <!-- Team members will be populated here by JavaScript -->
+      </div>
+    </section> 
+
+    <!-- Team Values Section -->
+    <!-- <section class="team-values">
+      <div class="container">
+        <h2 class="section-title">Our Core Values</h2>
+        <div class="values-container">
+          <div class="value-item">
+            <div class="value-icon">🌍</div>
+            <h3>Cultural Respect</h3>
+            <p>
+              We promote responsible travel that respects local cultures,
+              traditions, and environments.
+            </p>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">💡</div>
+            <h3>Authentic Experiences</h3>
+            <p>
+              We believe in meaningful travel experiences that create genuine
+              connections with places and people.
+            </p>
+          </div>
+          <div class="value-item">
+            <div class="value-icon">🤝</div>
+            <h3>Inclusive Travel</h3>
+            <p>
+              We are committed to making travel accessible and enjoyable for
+              people of all backgrounds and abilities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- Team Facts Section -->
+    <!-- <section class="container">
+      <h2 class="section-title">Team Wanderlust by the Numbers</h2>
+      <table style="max-width: 800px; margin: 0 auto">
+        <thead>
+          <tr>
+            <th>Statistic</th>
+            <th>Value</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Countries Visited</td>
+            <td>127</td>
+            <td>
+              Collectively, our team has explored 127 countries across all
+              continents
+            </td>
+          </tr>
+          <tr>
+            <td>Years of Experience</td>
+            <td>45+</td>
+            <td>
+              Our team members have a combined 45+ years in the travel industry
+            </td>
+          </tr>
+          <tr>
+            <td>Languages Spoken</td>
+            <td>14</td>
+            <td>
+              Our multilingual team can assist travelers in 14 different
+              languages
+            </td>
+          </tr>
+          <tr>
+            <td>Travelers Assisted</td>
+            <td>10,000+</td>
+            <td>
+              We've helped over 10,000 travelers plan their dream vacations
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section> -->
+
+    <!-- Join Our Team Section -->
+    <!-- <section
+      style="background-color: #f5f5f5; padding: 60px 0; text-align: center"
+    >
+      <div class="container">
+        <h2 class="section-title">Join Our Team</h2>
+        <p style="max-width: 700px; margin: 0 auto 30px">
+          Are you passionate about travel and helping others explore the world?
+          We're always looking for talented individuals to join our growing
+          team.
+        </p>
+        <a href="contact.html" class="cta-button">Get in Touch</a>
+      </div>
+    </section> -->
+
+    <!-- Footer -->
+    <!-- <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Wanderlust</h3>
+            <p>
+              Your ultimate guide to exploring the world's most amazing
+              destinations.
+            </p>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="destinations.html">Destinations</a></li>
+              <li><a href="tips.html">Travel Tips</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="team.html">Our Team</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <div class="social-icons">
+              <a href="#" class="social-icon">Facebook</a>
+              <a href="#" class="social-icon">Instagram</a>
+              <a href="#" class="social-icon">Twitter</a>
+              <a href="#" class="social-icon">Pinterest</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Wanderlust. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer> -->
+
+    <!-- JavaScript for shuffling team members -->
+    <script>
+      // Team members data
+      const teamMembers = [
+        {
+          name: "Emma Rodriguez",
+          position: "Founder & CEO",
+          bio: "With over 15 years of travel experience across 45 countries, Emma founded Wanderlust to share her passion for authentic travel experiences.",
+          image: "/api/placeholder/280/280",
+        },
+        {
+          name: "David Chen",
+          position: "Travel Consultant",
+          bio: "Specializing in Asian destinations, David has lived in 5 countries and speaks 4 languages. He loves helping travelers discover hidden gems.",
+          image: "/api/placeholder/280/280",
+        },
+        {
+          name: "Sophie Martin",
+          position: "Content Manager",
+          bio: "A travel writer with a background in journalism, Sophie creates engaging content to inspire your next adventure.",
+          image: "/api/placeholder/280/280",
+        },
+        {
+          name: "James Wilson",
+          position: "Adventure Specialist",
+          bio: "Former mountain guide and outdoor enthusiast, James specializes in adventure travel and off-the-beaten-path destinations.",
+          image: "/api/placeholder/280/280",
+        },
+        {
+          name: "Olivia Thompson",
+          position: "Luxury Travel Expert",
+          bio: "With experience in high-end hospitality, Olivia curates bespoke luxury travel experiences for discerning travelers.",
+          image: "/api/placeholder/280/280",
+        },
+        {
+          name: "Michael Patel",
+          position: "Sustainability Coordinator",
+          bio: "An environmental scientist by training, Michael ensures our travel recommendations prioritize sustainability and eco-friendly practices.",
+          image: "/api/placeholder/280/280",
+        },
+        {
+          name: "Isabella Kim",
+          position: "Customer Relations",
+          bio: "Isabella's warm personality and attention to detail ensure every client receives personalized service and support.",
+          image: "/api/placeholder/280/280",
+        },
+        {
+          name: "Daniel Nguyen",
+          position: "Photography Expert",
+          bio: "Award-winning travel photographer who leads our photography tours and shares tips for capturing your travel memories.",
+          image: "/api/placeholder/280/280",
+        },
+      ];
+
+      // Function to shuffle array (Fisher-Yates algorithm)
+      function shuffleArray(array) {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+      }
+
+      // Function to display team members
+      function displayTeamMembers() {
+        const teamList = document.getElementById("team-list");
+        teamList.style.opacity = "0";
+
+        setTimeout(() => {
+          // Shuffle the team members
+          const shuffledMembers = shuffleArray(teamMembers);
+
+          // Clear the current list
+          teamList.innerHTML = "";
+
+          // Add team members to the DOM
+          shuffledMembers.forEach((member) => {
+            const memberElement = document.createElement("div");
+            memberElement.className = "team-member";
+            memberElement.innerHTML = `
+                        <img src="${member.image}" alt="${member.name}" class="member-image">
+                        <div class="member-info">
+                            <h3 class="member-name">${member.name}</h3>
+                            <div class="member-position">${member.position}</div>
+                            <p class="member-bio">${member.bio}</p>
+                            <div class="social-links">
+                                <a href="#" class="social-link">f</a>
+                                <a href="#" class="social-link">in</a>
+                                <a href="#" class="social-link">t</a>
+                            </div>
+                        </div>
+                    `;
+            teamList.appendChild(memberElement);
+          });
+
+          teamList.style.opacity = "1";
+        }, 300);
+      }
+
+      // Display team members on page load
+      document.addEventListener("DOMContentLoaded", displayTeamMembers);
+
+      // Add event listener to the refresh button
+      document
+        .getElementById("refresh-team")
+        .addEventListener("click", displayTeamMembers);
+
+      // Toggle mobile menu
+      const burger = document.querySelector(".burger");
+      const navLinks = document.querySelector(".nav-links");
+
+      burger.addEventListener("click", () => {
+        navLinks.classList.toggle("nav-active");
+        burger.classList.toggle("toggle");
+      });
+    </script>
+  </body>
+</html>
