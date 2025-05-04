@@ -287,17 +287,6 @@
       </div>
     </nav>
 
-    <!-- Gallery Header -->
-    <header class="gallery-header">
-      <div class="container">
-        <h1>Travel Photo Gallery</h1>
-        <p>
-          Explore stunning destinations through our curated collection of travel
-          photographs
-        </p>
-      </div>
-    </header>
-
     <!-- Photo Gallery Section -->
     <section class="container">
       <div class="gallery-filters">
@@ -504,15 +493,43 @@
           Immerse yourself in stunning travel videos from around the world
         </p>
 
-        <div class="video-container">
-          <div class="video-item">
-            <div class="video-wrapper">
-              <img
-                src="/api/placeholder/600/340"
-                alt="Exploring Japan"
-                class="video-thumbnail"
-              />
-              <div class="video-play"></div>
+        <div
+          class="video-container"
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+          "
+        >
+          <div class="video-item" style="flex-basis: 48%; min-width: 300px">
+            <div
+              class="video-wrapper"
+              style="
+                position: relative;
+                padding-bottom: 56.25%;
+                height: 0;
+                overflow: hidden;
+                margin-bottom: 15px;
+              "
+            >
+              <video
+                controls
+                preload="metadata"
+                poster="video-thumbnail1.jpg"
+                style="
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  background-color: #000;
+                "
+              >
+                <source src="1.mp4" type="video/mp4" />
+                <source src="1.webm" type="video/webm" />
+                Your browser does not support the video tag.
+              </video>
             </div>
             <div class="video-info">
               <h3 class="video-title">A Week in Japan</h3>
@@ -523,38 +540,40 @@
             </div>
           </div>
 
-          <div class="video-item">
-            <div class="video-wrapper">
-              <img
-                src="/api/placeholder/600/340"
-                alt="Italian Food Tour"
-                class="video-thumbnail"
-              />
-              <div class="video-play"></div>
+          <div class="video-item" style="flex-basis: 48%; min-width: 300px">
+            <div
+              class="video-wrapper"
+              style="
+                position: relative;
+                padding-bottom: 56.25%;
+                height: 0;
+                overflow: hidden;
+                margin-bottom: 15px;
+              "
+            >
+              <video
+                controls
+                preload="metadata"
+                poster="video-thumbnail2.jpg"
+                style="
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  background-color: #000;
+                "
+              >
+                <source src="2.mp4" type="video/mp4" />
+                <source src="2.webm" type="video/webm" />
+                Your browser does not support the video tag.
+              </video>
             </div>
             <div class="video-info">
               <h3 class="video-title">Culinary Italy</h3>
               <p class="video-description">
                 From pasta in Rome to pizza in Naples, explore Italy's diverse
                 culinary landscape.
-              </p>
-            </div>
-          </div>
-
-          <div class="video-item">
-            <div class="video-wrapper">
-              <img
-                src="/api/placeholder/600/340"
-                alt="New Zealand Adventure"
-                class="video-thumbnail"
-              />
-              <div class="video-play"></div>
-            </div>
-            <div class="video-info">
-              <h3 class="video-title">New Zealand: Land of Adventure</h3>
-              <p class="video-description">
-                Bungee jumping, hiking, and exploring the breathtaking
-                landscapes of New Zealand's South Island.
               </p>
             </div>
           </div>
